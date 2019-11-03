@@ -4,10 +4,11 @@ class BatBuddy(Bat):
     LIFE_DEC = 20
     TIME_INC_SEC = datetime.timedelta(seconds=86400)
 
-    def __init__(self, lf):
-        self.life = lf;
-        self.exp = 0;
-        self.level = 1;
+    def __init__(self, nm, lf):
+        self.name = nm
+        self.life = lf
+        self.exp = 0
+        self.level = 1
         self.starttime = datetime.datetime.now()
 
     def update_life(self):
