@@ -24,6 +24,7 @@ def make_event(request):
         print(request.POST["lat"], request.POST["lon"])
         lat = float(request.POST["lat"])
         lon = float(request.POST["lon"])
+        print(lat, lon)
         num_joined = 0
         radius = float(request.POST["radius"])
         start_time = datetime.datetime.strptime(request.POST["start_time"], "%Y-%m-%d")
@@ -31,8 +32,11 @@ def make_event(request):
                 
         new_event = Event(name=name, lat=lat, lon=lon, num_joined=num_joined,start_time=start_time,end_time=end_time,radius=radius)
         new_event.save()
-        return render(request, "home.html", {})
+        context = {"lat": lat, "lon": lon}
+        return render(request, "events/confirm_event.html", context)
+        #return render(request, "home.html", {})
     return HttpResponse("Bad.")
+
 
 def check_event2(request):
     print(request.POST)
@@ -47,7 +51,9 @@ def check_event2(request):
             context = {'error': "Geolocation error."}
             return render(request, 'events/check_event.html', context)
         in_event = False
+        event_name = ""
         for event in Event.objects.all():
+            print(event.close_enough(lat,lon), event.event_is_now())
             if event.close_enough(lat, lon) and event.event_is_now():
                 in_event = True
                 print("Near Event.")
@@ -57,10 +63,16 @@ def check_event2(request):
                 bat_name = random_bat()
                 new_tag = Tag(user=user, date=date, bat_id=bat_id, bat_name=bat_name, event=event.name)
                 new_tag.save()
+                event_name = event.name
             else:
                 print("Not Near Event.")
         if in_event:
-            return HttpResponse("Near event.")
+            context = {
+                "lat": lat,
+                "lon": lon,
+                "event": event_name,
+            }
+            return render(request, "events/at_event.html",context)
         return HttpResponse("Not at any events.")
     return HttpResponse("Bad.")
 

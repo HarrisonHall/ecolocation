@@ -39,9 +39,10 @@ class Event(models.Model):
     
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     
-        d = R * c
+        #d = R * c
+        d = c
 
-        print(f"distance {d}, {self.radius}")
+        print(f"distance {d} {c}, {self.radius}, {lat2}, {lon2}, {lat1}, {lon1}")
     
         return d < self.radius
 

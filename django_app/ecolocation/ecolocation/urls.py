@@ -29,8 +29,14 @@ urlpatterns = [
     path('make_event/', views.make_event),
 
     path('test/', views.Test),
-    #path('make_event', TemplateView.as_view(template_name='events/make_event.html'), name='make_event')
+    path('about/', TemplateView.as_view(template_name="about.html"), name="about"),
+    
+    #path('make_event', TemplateView.as_view(template_name='events/make_event.html'), name='make_event'),
     path('make_event', views.create_event, name='make_event'),
+    path('confirm_event', TemplateView.as_view(template_name="events/confirm_event.html"), name='confirm_event'),
+    path('at_event', TemplateView.as_view(template_name="events/at_event.html"), name="at_event"),
+
+    
     
     path('view_tags', views.view_tags, name='view_tags'),
     path('view_tags_single', views.view_tags_single, name='view_tags_single'),

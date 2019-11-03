@@ -27,7 +27,7 @@ SECRET_KEY = 'hj*az)q=1&*tx7a-u&uix97hfp8qdgmf08yc!^znhjl3!078ga'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["powerful-peak-76897.herokuapp.com", "ecolocation.space","localhost", "127.0.0.1"]
 
 
 # Application definition
