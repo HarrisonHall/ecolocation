@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from . import views
 from django.views.generic.base import TemplateView # new
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('make_event/', views.make_event),
-    
+
     path('test/', views.Test),
     #path('make_event', TemplateView.as_view(template_name='events/make_event.html'), name='make_event')
     path('make_event', views.create_event, name='make_event'),
