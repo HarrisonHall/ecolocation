@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for t in tags %}
+<p>{{t.user}}  {{t.bat_id}} {{t.bat_name}}</p>
+</br>
+{% endfor %}
+{% endblock %}
+
+ 

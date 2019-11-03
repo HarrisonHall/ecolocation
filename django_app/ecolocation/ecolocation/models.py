@@ -18,9 +18,11 @@ class Event(models.Model):
 
 
     def event_is_now(self):
-        now = datetime.datetime.now()
-        if now < self.end_time and now > self.start_time:
+        now = datetime.date.today()
+        if now <= self.end_time and now >= self.start_time:
+            print("good")
             return True
+        print("bad")
         return False
 
     def close_enough(self, lat2, lon2):
@@ -38,6 +40,8 @@ class Event(models.Model):
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     
         d = R * c
+
+        print(f"distance {d}, {self.radius}")
     
         return d < self.radius
 
@@ -50,3 +54,13 @@ class Event(models.Model):
     def __str__(self):
         print(f"{self.lat} {self.lon}")
 
+        
+class Tag(models.Model):
+    user = models.CharField(max_length=50)
+    bat_name = models.CharField(max_length=50)
+    bat_id = models.IntegerField()
+    event = models.CharField(max_length=100)
+    date = models.DateField()
+
+    def get_absolute_url(self):
+        return reverse('modelforms:index')
