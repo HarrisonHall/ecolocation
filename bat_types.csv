@@ -1,0 +1,11 @@
+Type,Frequency,Probability,HexColor,Life,Image
+Little brown bat,40-80,0.2,8B4513,1000
+Fruit bat,60-80,0.2,F0E68C,1200
+Vampire bat,35-85,0.1,FA8072,700
+False vampire bat,25-85,0.12,DC143C,300
+Vesper bat,14-35,0.1,228B22,500
+Horseshoe bat,20-45,0.13,FF8C00,800
+Funnel-eared bat,65-89,0.05,1E90FF,850
+Mouse-tailed bat,24-53,0.06,808000,900
+Flower bat,10-14,0.03,FFC0CB,460
+Sheath-tailed bat,90-100,0.01,9400D3,400
