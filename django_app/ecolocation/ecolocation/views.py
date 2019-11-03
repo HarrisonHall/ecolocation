@@ -9,6 +9,7 @@ import datetime
 
 import pandas as pd
 import random
+import os 
 
 
 def create_event(request):
@@ -20,6 +21,7 @@ def make_event(request):
     if request.method == "POST":
         print(request.POST)
         name = request.POST["name"]
+        print(request.POST["lat"], request.POST["lon"])
         lat = float(request.POST["lat"])
         lon = float(request.POST["lon"])
         num_joined = 0
@@ -38,8 +40,12 @@ def check_event2(request):
     lon = 0
     if request.method == "POST":
         print(request.POST)
-        lat = float(request.POST['lat'])
-        lon = float(request.POST['lon'])
+        try:
+            lat = float(request.POST['lat'])
+            lon = float(request.POST['lon'])
+        except:
+            context = {'error': "Geolocation error."}
+            return render(request, 'events/check_event.html', context)
         for event in Event.objects.all():
             if event.close_enough(lat, lon) and event.event_is_now():
                 print("Near Event.")
@@ -62,11 +68,18 @@ def view_tags(request):
     return render(request, 'tags/check_tags.html', context)
 
 def view_tags_single(request):
-    g = Tag.objects.get(user=request.user)
-    print(type(g))
+    g = Tag.objects.all().filter(user=request.user)
+    bat = get_bat_data_dict()
+    desc = []
+    images = []
+    colors = []
+    
     for i in g:
-        print(i.user)
-    context = {"tags": g}
+        desc.append(bat[i.bat_name]["description"])
+        images.append(bat[i.bat_name]["image"])
+        colors.append(bat[i.bat_name]["HexColor"])
+    
+    context = {"tags": zip(g, desc, images, colors)}
     return render(request, 'tags/check_tags.html', context)
 
 def Test(request):
@@ -75,6 +88,20 @@ def Test(request):
 
 def get_bat_data():
     return pd.read_csv("bats/bat_types.csv")
+
+def get_bat_data_dict():
+    data = pd.read_csv("bats/bat_types.csv")
+    good_data = {}
+
+    for i in range(len(data)):
+        print(os.path.exists(os.getcwd()+"/images/Fruit.png"))
+        good_data[data["Type"][i]] = {
+            #"image": os.path.dirname(os.path.realpath(__file__)) + data["Image"][i][1:],
+            "image": data["Image"][i][2:],
+            "description": data["Description"][i].replace("|",","),
+            "HexColor": data["HexColor"][i],
+        }
+    return good_data
 
 def random_bat():
     #Tag.objects.all().delete()
