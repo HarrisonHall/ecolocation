@@ -46,8 +46,10 @@ def check_event2(request):
         except:
             context = {'error': "Geolocation error."}
             return render(request, 'events/check_event.html', context)
+        in_event = False
         for event in Event.objects.all():
             if event.close_enough(lat, lon) and event.event_is_now():
+                in_event = True
                 print("Near Event.")
                 date = datetime.date.today()
                 user = request.user
@@ -57,6 +59,8 @@ def check_event2(request):
                 new_tag.save()
             else:
                 print("Not Near Event.")
+        if in_event:
+            return HttpResponse("Near event.")
         return HttpResponse("Not at any events.")
     return HttpResponse("Bad.")
 
