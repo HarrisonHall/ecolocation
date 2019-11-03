@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+function getLocationConstant() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+        } else {
+            alert("Your browser or device doesn't support Geolocation");
+        }
+    }
+
+    // If we have a successful location update
+    function onGeoSuccess(event) {
+        document.getElementById("Latitude").value = event.coords.latitude;
+        document.getElementById("Longitude").value = event.coords.longitude;
+    }
+
+    // If something has gone wrong with the geolocation request
+    function onGeoError(event) {
+        alert("Error code " + event.code + ". " + event.message);
+}
+getLocationConstant();
+</script>
+<form action="/check_event/" method="post">
+  <label for="info">
+  {% csrf_token %}
+  <input type="hidden" id="Latitude" name="lat" value="" size ="40">
+  <input type="hidden" id="Longitude" name="lon" value="" size ="40">
+  <input type="submit" value="Check">
+</form>
+
+<br>
+
+{% for m in all_events %}
+<p>{{m.name}}</p>
+<p>Location: {{m.lat}} {{m.lon}}</p>
+</br>
+{% endfor %}
+{% endblock %}
+
+ 

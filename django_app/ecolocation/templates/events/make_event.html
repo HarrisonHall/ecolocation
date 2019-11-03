@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/make_event/" method="post">
+  {{ event_table.management_form }}
+  {% csrf_token %}
+  <table>
+    {{ event_table.as_p }}
+  </table>
+  <input type="submit" value="Submit">
+</form>
+
+<br>
+
+{% for m in all_events %}
+<p>{{m.name}}</p>
+<p>Location: {{m.lat}} {{m.lon}}</p>
+</br>
+{% endfor %}
+{% endblock %}
+
+ 
