@@ -35,6 +35,7 @@ urlpatterns = [
     path('view_tags', views.view_tags, name='view_tags'),
     path('view_tags_single', views.view_tags_single, name='view_tags_single'),
     
-    path('check_event', TemplateView.as_view(template_name='events/check_event.html'), name="check_event"),
+    #path('check_event', TemplateView.as_view(template_name='events/check_event.html'), name="check_event"),
+    path('check_event', views.check_event, name="check_event"),
     path('check_event/', views.check_event2, name="check_event2"),
 ]

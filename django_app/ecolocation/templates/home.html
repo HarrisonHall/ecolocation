@@ -4,22 +4,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p>
-  <br>
-  <p><a href="{% url 'make_event' %}">Make Event</a></p>
-  <br>
-  <p><a href="{% url 'view_tags_single' %}">Your Bats</a></p>
-  <br>
-  <p><a href="{% url 'check_event' %}">Check Events</a></p>
+  <p>Welcome {{ user.username }}</p>
 {% else %}
   <p>You are not logged in</p>
   <button type="button" name="button">
-    <a href="{% url 'login' %}">login</a>
-  </button>
-  <br>
-  <button type="button" name="button">
-    <a href="{%url 'signup' %}">sign up</a>
+    <h2><a href="{%url 'signup' %}">sign up</a></h2>
   </button>
 {% endif %}
 {% endblock %}

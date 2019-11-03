@@ -31,7 +31,7 @@ def make_event(request):
                 
         new_event = Event(name=name, lat=lat, lon=lon, num_joined=num_joined,start_time=start_time,end_time=end_time,radius=radius)
         new_event.save()
-        return HttpResponse("Good.")
+        return render(request, "home.html", {})
     return HttpResponse("Bad.")
 
 def check_event2(request):
@@ -64,6 +64,11 @@ def check_event2(request):
         return HttpResponse("Not at any events.")
     return HttpResponse("Bad.")
 
+def check_event(request):
+    g = Event.objects.all()
+    context = {"event_table": EventForm, "all_events": g,}
+    return render(request, 'events/check_event.html', context)
+
 def view_tags(request):
     g = Tag.objects.all()
     for i in g:
@@ -77,13 +82,15 @@ def view_tags_single(request):
     desc = []
     images = []
     colors = []
+    prob = []
     
     for i in g:
         desc.append(bat[i.bat_name]["description"])
         images.append(bat[i.bat_name]["image"])
         colors.append(bat[i.bat_name]["HexColor"])
+        prob.append(bat[i.bat_name]["Probability"])
     
-    context = {"tags": zip(g, desc, images, colors)}
+    context = {"tags": zip(g, desc, images, colors, prob)}
     return render(request, 'tags/check_tags.html', context)
 
 def Test(request):
@@ -104,6 +111,7 @@ def get_bat_data_dict():
             "image": data["Image"][i][2:],
             "description": data["Description"][i].replace("|",","),
             "HexColor": data["HexColor"][i],
+            "Probability": str(float(data["Probability"][i])*100)+"%",
         }
     return good_data
 

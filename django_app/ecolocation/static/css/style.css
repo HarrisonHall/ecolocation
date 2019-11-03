@@ -1,13 +1,148 @@
 @import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
 body {
-  background-color: #82daf5;
+  background-color: #732C7B;
 }
 
 div {
   display: inline-block;
 }
 
+p {
+    text-align: center;
+}
+
+button {
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+
 h1 {
   font-family: 'Exo 2', sans-serif;
   text-align: center;
+  color: #ffffff;
+  font-size: 4em;
+}
+
+h2 {
+  font-family: 'Exo 2', sans-serif;
+  text-align: center;
+  color: #ffffff;
+  font-size: 2em;
+}
+
+p {
+    font-size: 1.5em;
+    font-family: 'Exo 2', sans-serif;
+    color: #ffffff;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  background-color: #9C8AA5;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+}
+
+li {
+    float: left;
+    text-align: center;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+.all_cards_wrapper {
+    display: flex;
+}
+
+.all_cards {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.all_cards > div {
+    scroll-snap-align: start;
+}
+@supports (scroll-snap-type) {
+  .all_cards > a {
+    display: none;
+  }
+}
+
+.card_wrapper {
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+}
+@media only screen and (orientation: portrait) {
+    .card_wrapper {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+  transition: 0.3s;
+  text-align: center;
+  width: 90%;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #9C8AA5;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+}
+
+/* Add some padding inside the card container */
+.container {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.spacer {
+    margin-top: 2em;
+}
+img {
+    width: 50%;
+}
+
+.logo {
+    text-align: center;
+
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.nav {
+    text-align: center;
+    width: 100%;
 }

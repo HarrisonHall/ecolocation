@@ -32,12 +32,22 @@ getLocationConstant();
 </form>
 
 <br>
+<br>
 
-{% for m in all_events %}
-<p>{{m.name}}</p>
-<p>Location: {{m.lat}} {{m.lon}}</p>
-</br>
-{% endfor %}
+<div class="all_card_wrapper">
+  <div class="all_cards">
+    {% for m in all_events %}
+    <div class="card_wrapper">
+      <div class="card">
+        <div class="container">
+          <p>{{m.name}}</p>
+          <p>Location: {{m.lat}} {{m.lon}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
 
  

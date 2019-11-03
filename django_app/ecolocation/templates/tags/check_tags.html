@@ -1,25 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for t, d, i, c in tags %}
-<div class="spacer"></div>
+<br>
+<div class="all_cards_wrapper">
+<div class="all_cards">
+{% for t, d, i, c, p in tags %}
+
+
 <div class="card_wrapper" style="background-color: #{{c}}">
 <div class="card">
   <div class="container">
     <p>{{t.bat_name}}</p>
     <p>ID: {{t.bat_id}}</p>
+    <p>Tag Date: {{t.date}}</p>
+    <p>Rarity: {{p}}</p>
+    <p></p>
   </div>
   {% load static %}
-  <img src="{% static i %}" width="50%"></img>
+  <div class="pic">
+    <img src="{% static i %}"></img>
+  </div>
   <div class="container">
     <p>{{ d }}</p>
   </div>
 </div>
 </div>
-<div class="spacer"></div>
+
+<br>
 <br>
 
 {% endfor %}
+</div>
+</div>
 
 {% endblock %}
 

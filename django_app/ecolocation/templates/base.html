@@ -2,48 +2,25 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <style>
-      h1 {
-      color: #ffffff;
-      font-size: 4em;
-      text-align: center;
-      }
-      body {
-        background-color: #421C52;
-      }
-      p {
-      color: #ffffff;
-      font-size: 2em;
-      }
-      .spacer {
-      width: 25%;
-      }
-      .card_wrapper {
-      text-align: center;
-      width: 50%;
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <div class="nav">
+     <button class="logo" onclick="window.location.href='/'"><h1>EcoLocation</h1></button><br>
+    {% if user.is_authenticated %}
+    <ul>
+      <li><h2><a href="{% url 'logout' %}">Logout</a></h2></li>
+      <li><h2><a href="{% url 'make_event' %}">New Event</a></h2></li>
+      <li><h2><a href="{% url 'check_event' %}">Attend</a></h2></li>
+      <li><h2><a href="{% url 'view_tags_single' %}">Bats</a></h2></li>
+      <li><h2><a href="http://google.com">About</a></h2></li>
+    </ul>
+    </div>
+    {% else %}
+    <ul>
+      <li><h2><a href="{% url 'login' %}">Login</a></h2></li>
 
-      }
-      .card {
-      /* Add shadows to create the "card" effect */
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      width: 90%;
-      height: 90%;
-      background: #9C8AA5;
-      text-align: center;
-      }
-
-      /* On mouse-over, add a deeper shadow */
-      .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      }
-
-      /* Add some padding inside the card container */
-      .container {
-      padding: 2px 16px;
-      }
-    </style>
-    <h1>EcoLocation</h1>
+    </ul>
+    {% endif %}
+    
   </head>
   <body>
     <main>
