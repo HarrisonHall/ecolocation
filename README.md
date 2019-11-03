@@ -2,6 +2,8 @@
 
 Join the **Eco**system by clicking [here](https://powerful-peak-76897.herokuapp.com/).
 
+Ecolocation is web-app made for HackDuke's Hack for Good hackathon 2019. 
+
 ## Inspiration
 
 Pokemon is an insanely popular app worldwide that allows players to catch pokemon and battle each other. We applied this model to helping the earth, by allowing people to organize clean up events and encourage others to attend. The incentive for attending one of these Earth-saving events is to tag a new bat of varying rarity. Will you and your bat buddies be able to save the earth?
