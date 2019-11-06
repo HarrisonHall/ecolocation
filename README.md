@@ -1,8 +1,8 @@
 # Ecolocation
 
-Join the **Eco**system by clicking [here](https://powerful-peak-76897.herokuapp.com/).
+Winner of best domain name by domain.com in association with MLH. Ecolocation is web-app made for HackDuke's Hack for Good hackathon 2019. 
 
-Ecolocation is web-app made for HackDuke's Hack for Good hackathon 2019. 
+Join the **Eco**system by clicking [here](https://powerful-peak-76897.herokuapp.com/).
 
 ## Inspiration
 
